@@ -21,6 +21,11 @@ def factorial(n):
         acc *= i
     return acc
 
+def factors(n):
+    """ Return a set of the factors of n. """
+    return set(reduce(list.__add__, 
+                ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+
 def is_prime(n):
     """ Check if n is a prime number. """
 
@@ -39,21 +44,21 @@ def is_prime(n):
 
     return True
 
-def factors(n):
-    """ Return a set of the factors of n. """
-    return set(reduce(list.__add__, 
-                ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+def is_square(n):
+    """ Check if n is a perfect square, based on the Babylonian algorithm. """
 
-def is_perfect_square(n):
-    """ Is n a perfect square? """
-    if n < 1:
+    if n % 1 !=0:
+        return False
+    if n < 0:
+        return False
+    if n == 1:
+        return True
 
-# TODO: is_perfect_square(n), is_perfect_cube(n), is_perfect_somethingelse(n)
-
-print is_prime(2.5)
-
-
-
-    
-    
-
+    x = n // 2
+    seen = set([x])
+    while x * x != n:
+        x = (x + (n // x)) // 2
+        if x in seen: 
+            return False
+        seen.add(x)
+    return True
