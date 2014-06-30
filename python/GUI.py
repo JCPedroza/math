@@ -65,6 +65,15 @@ class TheFrame(Frame):
         return True
 
     # ==================
+    #  Output Handling
+    # ==================
+    def build_results(self, input_list, output_list):
+        output_string = ""
+        for i in xrange(len(input_list)):
+            output_string += str(input_list[i]) + ": " + str(output_list[i]) + "\n"
+        return output_string
+
+    # ==================
     #    Operations
     # ==================
 
@@ -86,29 +95,29 @@ class TheFrame(Frame):
         """ Return a set of the factors of entry. """
         entry = self.get_entry()
         if self.input_is_valid(entry, 1):
-            result = sorted(Math.factors_of(entry[0]))
-            self.result.config(text=result)
+            results = map(lambda x: sorted(Math.factors_of(x)), entry)
+            self.result.config(text=self.build_results(entry, results))
 
     def is_prime(self):
         """ Check if entry is a prime number. """
         entry = self.get_entry()
         if self.input_is_valid(entry, 1):
-            result = Math.is_prime(entry[0])
-            self.result.config(text=str(result))
+            results = map(Math.is_prime, entry)
+            self.result.config(text=self.build_results(entry, results))
 
     def is_square(self):
         """ Check if entry is a perfect square, based on the Babylonian algorithm. """
         entry = self.get_entry()
         if self.input_is_valid(entry, 1):
-            result = Math.is_square(entry[0])
-            self.result.config(text=str(result))
+            results = map(Math.is_square, entry)
+            self.result.config(text=self.build_results(entry, results))
 
     def square_factors_of(self):
         """ Return a set of the factors of entry that are perfect squares. """
         entry = self.get_entry()
         if self.input_is_valid(entry, 1):
-            result = sorted(Math.square_factors_of(entry[0]))
-            self.result.config(text=result)
+            results = map(lambda x: sorted(Math.square_factors_of(x)), entry)
+            self.result.config(text=self.build_results(entry, results))
 
 def main():
     root = Tk()
