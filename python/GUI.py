@@ -1,7 +1,7 @@
 import Math
-from Tkinter import Tk, Frame, Button, Label, Entry
+from Tkinter import Tk, Frame, Button, Label, Entry, LEFT
 
-class TheFrame(Frame):
+class Application(Frame):
 
     def __init__(self, parent):
         Frame.__init__(self, parent, background="white")
@@ -15,7 +15,7 @@ class TheFrame(Frame):
         self.columnconfigure(3, pad=7)
 
         self.entry = Entry(self)
-        self.entry.grid(row=0, column=0)
+        self.entry.grid(row=0, column=0, columnspan=3)
 
         gcdButton = Button(self, text="gcd", command=self.gcd)
         gcdButton.grid(row=1, column=0)
@@ -30,8 +30,8 @@ class TheFrame(Frame):
         squarefactorsButton = Button(self, text="square factors", command=self.square_factors_of)
         squarefactorsButton.grid(row=2, column=2)
 
-        self.result = Label(self, text="Results here")
-        self.result.grid(row=3, column=0)
+        self.result = Label(self, text="Results here", justify=LEFT)
+        self.result.grid(row=3, column=0, columnspan=3)
 
         self.pack()
         self.centerWindow()
@@ -81,7 +81,7 @@ class TheFrame(Frame):
         """ Return greatest common divisor using Euclid's Algorithm. """
         entry = self.get_entry()
         if self.input_is_valid(entry, 2):
-            result = Math.gcdm(entry[0], entry[1])
+            result = Math.gcdm(*entry)
             self.result.config(text=result)
 
     def lcm(self):
@@ -121,7 +121,7 @@ class TheFrame(Frame):
 
 def main():
     root = Tk()
-    app = TheFrame(root)
+    app = Application(root)
     root.mainloop()
 
 if __name__ == '__main__':
