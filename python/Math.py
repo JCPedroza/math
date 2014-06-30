@@ -6,6 +6,10 @@ def gcd(a, b):
         a, b = b, a % b
     return a
 
+def gcdm(*args):
+    """ Return greatest common divisior of args using Euclid's Algorithm. """
+    return reduce(gcd, args)
+
 def lcm(a, b):
     """ Return lowest common multiple. """
     return a * b / gcd(a, b)
@@ -15,7 +19,7 @@ def lcmm(*args):
     return reduce(lcm, args)
 
 def factorial(n):
-    """ Return factorian of n. """
+    """ Return factorial of n. """
     acc = 1
     for i in range(1, n + 1): 
         acc *= i
