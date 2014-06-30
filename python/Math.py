@@ -21,7 +21,7 @@ def factorial(n):
         acc *= i
     return acc
 
-def factors(n):
+def factors_of(n):
     """ Return a set of the factors of n. """
     return set(reduce(list.__add__, 
                 ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
@@ -62,3 +62,8 @@ def is_square(n):
             return False
         seen.add(x)
     return True
+
+def square_factors_of(n):
+    """ Return a set of the factors of n that are perfect squares. """
+    return set(filter(is_square, factors_of(n)))
+
