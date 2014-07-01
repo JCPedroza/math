@@ -1,4 +1,4 @@
-import Math
+import Math, re
 from Tkinter import Tk, Frame, Button, Label, Entry, LEFT
 
 class Application(Frame):
@@ -51,7 +51,8 @@ class Application(Frame):
 
     def get_entry(self):
         """ Parses the entry input, from string to float. Ignores non-digit strings. """
-        return map(float, filter(lambda x: x.isdigit(), self.entry.get().split()))
+        # return map(float, filter(lambda x: x.isdigit(), self.entry.get().split()))
+        return map(float, filter(lambda x: x.isdigit(), re.findall(r"[\w']+", self.entry.get())))
 
     def input_is_valid(self, input, min_size, max_size=10):
         """ Checks that the input has the desired specifications. """
@@ -67,6 +68,7 @@ class Application(Frame):
     # ==================
     #  Output Handling
     # ==================
+    
     def build_results(self, input_list, output_list):
         output_string = ""
         for i in xrange(len(input_list)):
