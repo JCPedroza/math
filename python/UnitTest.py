@@ -1,6 +1,17 @@
 import unittest
 import Math
 
+# TODO: tests with 0 and negatives as input!!!
+
+class gcdTests(unittest.TestCase):
+    """ Tests for gcd(a, b) (greatest common divisor) function. """
+    def tests(self):
+        self.assertEqual(Math.gcd(10, 20), 10)
+        self.assertEqual(Math.gcd(27, 32), 1)
+        self.assertEqual(Math.gcd(12, 40), 4)
+        self.assertEqual(Math.gcd(15.0, 20.0), 5)
+        self.assertEqual(Math.gcd(48, 180, 14), 2)
+
 class IsPrimeTests(unittest.TestCase):
     """ Tests for the is_prime() function. """
 
@@ -16,12 +27,12 @@ class IsPrimeTests(unittest.TestCase):
     def test_primes(self):
         """ Prime check for prime numbers. """
         for i in self.primes:
-            self.failUnless(Math.is_prime(i), i)
+            self.assertTrue(Math.is_prime(i), i)
 
     def test_non_primes(self):
         """ Prime check for non-prime numbers. """
         for i in self.non_primes:
-            self.failIf(Math.is_prime(i), i)
+            self.assertFalse(Math.is_prime(i), i)
 
 
 class IsSquareTests(unittest.TestCase):
@@ -37,12 +48,12 @@ class IsSquareTests(unittest.TestCase):
     def test_squares(self):
         """ Square check for perfect square numbers. """
         for i in self.squares:
-            self.failUnless(Math.is_square(i), i)
+            self.assertTrue(Math.is_square(i), i)
 
     def test_non_squares(self):
         """ Square check for non perfect square numbers. """
         for i in self.non_squares:
-            self.failIf(Math.is_square(i), i)
+            self.assertFalse(Math.is_square(i), i)
 
 
 
