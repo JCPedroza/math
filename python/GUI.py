@@ -49,9 +49,21 @@ class Application(Frame):
     #  Input Handling
     # ==================
 
+    def is_number(self, string):
+        """ 
+        Checks if a string is a number.
+        Used instead of str.isdigit() since it doesn't work on negative numbers.
+        """
+        try:
+            float(string)
+            return True
+        except ValueError:
+            return False
+
     def get_entry(self):
         """ Parses the entry input, from string to float. Ignores non-digit strings. """
-        return map(float, filter(lambda x: x.isdigit(), self.entry.get().split()))
+        print map(float, filter(self.is_number, self.entry.get().split()))
+        return map(float, filter(self.is_number, self.entry.get().split()))
 
     def input_is_valid(self, input, min_size, max_size=10):
         """ Checks that the input has the desired specifications. """
