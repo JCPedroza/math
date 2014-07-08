@@ -52,9 +52,7 @@ def abc_factors_of(a, b, c):
             if sum(j) == b and product(j) == a * c:
                 return_list.append(j)
     return  return_list
-
-print abc_factors_of(3, -5, -2)
-
+    
 def is_prime(n):
     """ Check if n is a prime number. """
 
