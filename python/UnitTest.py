@@ -10,7 +10,7 @@ class gcdTests(unittest.TestCase):
         self.assertEqual(Math.gcd(27, 32), 1)
         self.assertEqual(Math.gcd(12, 40), 4)
         self.assertEqual(Math.gcd(15.0, 20.0), 5)
-        self.assertEqual(Math.gcd(48, 180, 14), 2)
+        self.assertEqual(Math.gcdm(48, 180, 14), 2)
 
 class IsPrimeTests(unittest.TestCase):
     """ Tests for the is_prime() function. """
@@ -55,7 +55,19 @@ class IsSquareTests(unittest.TestCase):
         for i in self.non_squares:
             self.assertFalse(Math.is_square(i), i)
 
+class FactorPairsOfTests(unittest.TestCase):
+    """ Tests for the factor_pairs_of() function. """
+    def tests(self):
+        self.assertListEqual(Math.factor_pairs_of(100), [[1, 100], [2, 50], [4, 25], [5, 20], [10, 10]])
+        self.assertListEqual(Math.factor_pairs_of(1877), [[1, 1877]])
+        self.assertListEqual(Math.factor_pairs_of(1), [[1, 1]])
 
+class ABCFactorsOfTests(unittest.TestCase):
+    """ Tests for the abc_factors_of(a, b, c) function. """
+    def tests(self):
+        self.assertListEqual(Math.abc_factors_of(3, -5, -2), [[1, -6]])
+        self.assertListEqual(Math.abc_factors_of(6, 1, -2), [[-3, 4]])
+        self.assertListEqual(Math.abc_factors_of(6, -47, 77), [[-14, -33]])
 
 def main():
     unittest.main()
