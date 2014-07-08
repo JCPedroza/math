@@ -32,7 +32,7 @@ def factorial(n):
 def factors_of(n):
     """ Return a set of the factors of n. """
     return set(reduce(list.__add__, 
-                ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+                ([i, abs(n//i)] for i in range(1, int(abs(n)**0.5) + 1) if n % i == 0)))
 
 def factor_pairs_of(n):
     """ Return a set of the factor pars of n. """
@@ -51,8 +51,8 @@ def abc_factors_of(a, b, c):
         for j in test_pairs:
             if sum(j) == b and product(j) == a * c:
                 return_list.append(j)
-    return  return_list
-    
+    return  return_list if len(return_list) > 0 else "none"
+
 def is_prime(n):
     """ Check if n is a prime number. """
 
