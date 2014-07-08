@@ -30,6 +30,15 @@ def factors_of(n):
     return set(reduce(list.__add__, 
                 ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
 
+def factor_pairs_of(n):
+    """ Return a set of the factor pars of n. """
+    the_list = []
+    for i in range(1, int(n**0.5) + 1):
+        if n % i == 0:
+            the_list.append([i, n / i])
+    return the_list
+
+
 def is_prime(n):
     """ Check if n is a prime number. """
 
