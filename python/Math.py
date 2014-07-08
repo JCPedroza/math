@@ -1,4 +1,8 @@
-import math
+import math, operator
+
+def product(a_list):
+    """ Return the product of a list. """
+    return reduce(operator.mul, a_list)
 
 def gcd(a, b):
     """ Return greatest common divisor using Euclid's Algorithm. """
@@ -38,6 +42,18 @@ def factor_pairs_of(n):
             the_list.append([i, n / i])
     return the_list
 
+def abc_factors_of(a, b, c):
+    """ Factors of a * c that together sum b. """
+    factors = factor_pairs_of(abs(a * c))
+    return_list = []
+    for i in factors:
+        test_pairs = [i, [i[0]*-1, i[1]*-1], [i[0], i[1]*-1], [i[0]*-1, i[1]]]
+        for j in test_pairs:
+            if sum(j) == b and product(j) == a * c:
+                return_list.append(j)
+    return  return_list
+
+print abc_factors_of(3, -5, -2)
 
 def is_prime(n):
     """ Check if n is a prime number. """
@@ -79,4 +95,5 @@ def is_square(n):
 def square_factors_of(n):
     """ Return a set of the factors of n that are perfect squares. """
     return set(filter(is_square, factors_of(n)))
+
 
